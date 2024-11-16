@@ -104,6 +104,7 @@ const foods = [
 ];
 
 const categories = [
+    "Mbaxal",
     "Thiep",
     "Drink",
     "Dessert",
@@ -116,27 +117,37 @@ const menuGrid = document.querySelector('.menu-grid');
 const menuNav = document.querySelector('.menu-nav');
 
 
-window.onload = function(){
-    menu();
-}
+// window.onload = function(){
+//     menu();
+// }
 
+menu()
 
 // NOS FONCTION:
 
 function menu(){
     categories.forEach(function(cat){
-        const button = `<button onclick=onMenuClick()>${cat}</button>`;
+
+        const button = `
+        <button class='menu' onclick=onMenuClick(this)>
+            ${cat}
+        </button>`;
         menuNav.innerHTML += button;
     });
 }
 
 
-function onMenuClick(){
-    printMenuItems("thiep");
+function onMenuClick(e){
+    //2 recuperer le texte le bouton sur lequel on a clique
+    const textBtn = e.innerText.toLowerCase()
+    // console.log(textBtn)
+    printMenuItems(textBtn);
 }
 
 function printMenuItems(category){
+    menuGrid.innerHTML = '';
     foods.forEach(function(food){
+
         if(food.type == category){
             let description = food.description.substring(0,80);
         if(food.description.length > 80){
@@ -155,5 +166,35 @@ function printMenuItems(category){
         menuGrid.innerHTML += html;
         }
         
+    
     });
 }
+
+
+
+// const nombres = [12,23,45,2,12,34,434,456,2,45,78,20]
+
+// for i in nombres:
+//     print(i)
+
+// som = 0;
+// nombres.forEach(function(i){
+//     som += i;
+// });
+// console.log(som)
+
+// const a = "Aly"
+// const nom = `<h1>${a}</h1>`;
+
+
+
+// // 1. recuperer la ou on veut l'afficher
+// // document.body.innerHTML += nom;
+// const h1 = document.getElementById("monH1");
+// h1.innerHTML = nom;
+// console.log(nom)
+
+
+
+
+

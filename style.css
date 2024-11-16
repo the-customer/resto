@@ -119,11 +119,20 @@ header nav a:hover{
     font-size: 2em;
     columns: #333;
 }
+.container{
+    width: 90%;
+    margin: 0 auto;
+}
 
 .menu-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    margin: 0 auto;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; */
 }
 
 .menu-grid .menu-item{
@@ -133,6 +142,7 @@ header nav a:hover{
     text-align: center;
     box-shadow: 0 5px 8px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
+    width: 200px;
 }
 
 .menu-grid .menu-item:hover{
