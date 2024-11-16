@@ -198,3 +198,35 @@ footer a:hover{
     text-decoration: underline;
 }
 
+
+input{
+    padding: 10px 10px 10px 10%;
+    width: 100%;
+    border-radius: 10px;
+    
+}
+
+.input{
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+}
+
+input:focus{
+    outline: none;
+    border: 2px dashed var(--secondary-color);
+}
+
+.icon{
+    background-color: var(--secondary-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 0 0 10px;
+}

@@ -41,7 +41,7 @@ const foods = [
         image:"https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/1:1/w_2560%2Cc_limit/Smashburger-recipe-120219.jpg"
     },
     {
-        name: "Pizza",
+        name: "thiep",
         type: "dessert",
         ingredients: ["cheese", "pepperoni", "sauce"],
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus nisi minus porro autem iusto similique, consequatur, possimus impedit quas maiores illum reiciendis est in. Numquam fugit sint cum illum fugiat!",
@@ -115,6 +115,7 @@ const categories = [
 
 const menuGrid = document.querySelector('.menu-grid');
 const menuNav = document.querySelector('.menu-nav');
+const inputSearch = document.querySelector('input')
 
 
 // window.onload = function(){
@@ -144,6 +145,24 @@ function onMenuClick(e){
     printMenuItems(textBtn);
 }
 
+function printPlat(food){
+    let description = food.description.substring(0,80);
+        if(food.description.length > 80){
+            description += "...";
+        } 
+    const html = `
+                    <div class="menu-item">
+                        <div class="card-image">
+                            <img src="${food.image}">
+                        </div>
+                        <h3>${food.name}</h3>
+                        <p>${description}</p>
+                        <p class="price">${food.price} FCFA</p>
+                    </div>
+                    `
+    menuGrid.innerHTML += html;
+}
+
 function printMenuItems(category){
     menuGrid.innerHTML = '';
     foods.forEach(function(food){
@@ -170,6 +189,18 @@ function printMenuItems(category){
     });
 }
 
+//Creation des evenemt
+inputSearch.addEventListener('input',function(e){
+    motCle = e.target.value.trim()
+    menuGrid.innerHTML='';
+    if(motCle.length >= 3){
+        foods.forEach(function(food){
+            if(food.name.toLowerCase().startsWith(motCle.toLowerCase())){
+                printPlat(food);
+            }
+        });
+    }
+});
 
 
 // const nombres = [12,23,45,2,12,34,434,456,2,45,78,20]
@@ -198,3 +229,6 @@ function printMenuItems(category){
 
 
 
+// function onSearch(){
+//     console.log("recherche")
+// }
