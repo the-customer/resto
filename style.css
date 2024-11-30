@@ -5,6 +5,8 @@
     --white-color: #f2f2f2;
     --primary-color: #ffa721;
     --secondary-color: #850108;
+    --success-color: #59B259;
+    --info-color: #3F66D9;
 }
 
 
@@ -270,4 +272,43 @@ input:focus{
     justify-content: center;
     align-items: center;
     border-radius: 10px 0 0 10px;
+}
+
+
+.alert{
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    display: flex;
+    width: 250px;
+    color: #f2f2f2;
+    min-height: 50px;
+    justify-content: center;
+    align-items: center;
+    transition: all 5s ease;
+    box-shadow: -5px 5px 15px rgba(0,0,0,0.3);
+    border-radius: 20px 0 0 20px;
+}
+
+.alert .close-alert{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    cursor: pointer;
+    color: var(--secondary-color);
+    font-weight: 900;
+    border: none;
+}
+
+.danger-alert{
+    background-color: var(--secondary-color);
+}
+
+.success-alert{
+    background-color: var(--success-color);
+}
+
+.info-alert{
+    background-color: var(--info-color);
 }

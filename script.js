@@ -47,7 +47,7 @@ const foods = [
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus nisi minus porro autem iusto similique, consequatur, possimus impedit quas maiores illum reiciendis est in. Numquam fugit sint cum illum fugiat!",
         price: 5000,
         day : 1,
-        stock : 10,
+        stock : 3,
         image : "https://cdn.shopify.com/s/files/1/0274/9503/9079/files/20220211142754-margherita-9920_5a73220e-4a1a-4d33-b38f-26e98e3cd986.jpg?v=1723650067"
     },
     {
@@ -126,6 +126,8 @@ cart.innerText = paniers.length;
 //     menu();
 // }
 
+
+
 menu()
 
 // NOS FONCTION:
@@ -181,15 +183,25 @@ function printPlat(food){
         a.className = "cart";
         a.addEventListener("click", function(){
             // const name = food.name;
-            // const price = food.price;
+            // const price = food.price;x
             // const stock = food.stock;
             // ou bien
             const {name,price,stock} = food
             //rechercher si le plat est dans le panier ou pas
-            paniers.push({name,price,stock,qte:1});
+            const foundFood = paniers.find(plat => plat.name === name)
+            if (foundFood){// le plat est deja dans le panier
+                foundFood.qte += 1;
+                if (foundFood.qte > stock){
+                    foundFood.qte = stock
+                    createAlert(`🥹 Stock de "${foundFood.name}" épuisé`,'danger-alert')
+                }
+            }else{
+                paniers.push({name,price,stock,qte:1});
+            }
+            
             cart.innerText = paniers.length;
             console.log(paniers);
-        });
+        }); 
         //
         const img2 = document.createElement('img');
         img2.src = './img/panier.png';
@@ -246,6 +258,22 @@ inputSearch.addEventListener('input',function(e){
     }
 });
 
+
+function createAlert(message, type="info-alert"){
+    // <div class="alert">
+    //     <p>🥹 Stock épuisé !</p>
+    //     <button class="close-alert">X</button>
+    // </div>
+    const divAlert = document.createElement('div');
+    divAlert.className = `alert ${type}`;
+    pAlert = document.createElement('p');
+    pAlert.innerText = message;
+    btnAlert = document.createElement('button');
+    btnAlert.innerText = "X";
+    btnAlert.className = "close-alert";
+    divAlert.append(pAlert,btnAlert);
+    document.body.appendChild(divAlert);
+}
 
 // const nombres = [12,23,45,2,12,34,434,456,2,45,78,20]
 
