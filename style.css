@@ -37,6 +37,11 @@ header .logo{
     font-family: "Doto", sans-serif;
 }
 
+header nav{
+    display: flex;
+    align-items: center;
+}
+
 header nav a{
     color: var(--white-color);
     text-decoration: none;
@@ -46,6 +51,42 @@ header nav a{
 
 header nav a:hover{
     color: var(--primary-color);
+}
+
+.cart{
+    position: relative;
+}
+
+.menu-item{
+    position: relative;
+}
+.menu-item .cart{
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+}
+
+.cart span{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    /* background-color: rgb(54, 60, 180); */
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 100;
+    font-size: 0.7rem;
+
+}
+
+.cart img{
+    width: 20px;
+    height: 20px;
 }
 
 .hero{

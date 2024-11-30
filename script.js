@@ -1,4 +1,4 @@
-
+const MIX_DESCTION_LENGTH = 50
 const foods = [
     {
         name: "Pizza",
@@ -113,10 +113,14 @@ const categories = [
     "Fast-Food"
 ];
 
+const paniers = [];
+
 const menuGrid = document.querySelector('.menu-grid');
 const menuNav = document.querySelector('.menu-nav');
-const inputSearch = document.querySelector('input')
+const inputSearch = document.querySelector('input');
+const cart = document.querySelector('#cart');
 
+cart.innerText = paniers.length;
 
 // window.onload = function(){
 //     menu();
@@ -146,43 +150,83 @@ function onMenuClick(e){
 }
 
 function printPlat(food){
-    let description = food.description.substring(0,80);
-        if(food.description.length > 80){
+    let description = food.description.substring(0,MIX_DESCTION_LENGTH);
+        if(food.description.length > MIX_DESCTION_LENGTH){
             description += "...";
         } 
-    const html = `
-                    <div class="menu-item">
-                        <div class="card-image">
-                            <img src="${food.image}">
-                        </div>
-                        <h3>${food.name}</h3>
-                        <p>${description}</p>
-                        <p class="price">${food.price} FCFA</p>
-                    </div>
-                    `
-    menuGrid.innerHTML += html;
+        const div1 = document.createElement("div"); 
+        div1.className = "menu-item";
+        //
+        const div2 = document.createElement("div");
+        div2.className = "card-image";
+        //
+        const img = document.createElement('img');
+        img.src = food.image;
+        //
+        div2.appendChild(img);
+        //
+        const h3 = document.createElement('h3');
+        h3.innerText = food.name;
+        //
+        const pDesc = document.createElement('p');
+        pDesc.innerText = description;
+        //
+        const pPrix = document.createElement('p');
+        pPrix.innerText = description;
+        pPrix.className = "price";
+        pPrix.innerText = `${food.price} FCFA`;
+        //
+        const a = document.createElement('a');
+        a.href = "#";
+        a.className = "cart";
+        a.addEventListener("click", function(){
+            // const name = food.name;
+            // const price = food.price;
+            // const stock = food.stock;
+            // ou bien
+            const {name,price,stock} = food
+            //rechercher si le plat est dans le panier ou pas
+            paniers.push({name,price,stock,qte:1});
+            cart.innerText = paniers.length;
+            console.log(paniers);
+        });
+        //
+        const img2 = document.createElement('img');
+        img2.src = './img/panier.png';
+        //
+        a.appendChild(img2);
+        //
+        // div1.appendChild(div2);
+        // div1.appendChild(h3);
+        // div1.appendChild(pDesc);
+        // div1.appendChild(pPrix);
+        // div1.appendChild(a);
+        div1.append(div2,h3,pDesc,pPrix,a)
+        //
+        menuGrid.appendChild(div1);
+        //
+
+    // const html = `
+    //                 <div class="menu-item">
+    //                     <div class="card-image">
+    //                         <img src="${food.image}">
+    //                     </div>
+    //                     <h3>${food.name}</h3>
+    //                     <p>${description}</p>
+    //                     <p class="price">${food.price} FCFA</p>
+    //                     <a href="#" class="cart">
+    //                         <img src="./img/panier.png" alt="" srcset="">
+    //                     </a>
+    //                 </div>
+    //                 `
+    // menuGrid.innerHTML += html;
 }
 
 function printMenuItems(category){
     menuGrid.innerHTML = '';
     foods.forEach(function(food){
-
         if(food.type == category){
-            let description = food.description.substring(0,80);
-        if(food.description.length > 80){
-            description += "...";
-        } 
-        const html = `
-                    <div class="menu-item">
-                        <div class="card-image">
-                            <img src="${food.image}">
-                        </div>
-                        <h3>${food.name}</h3>
-                        <p>${description}</p>
-                        <p class="price">${food.price} FCFA</p>
-                    </div>
-                    `
-        menuGrid.innerHTML += html;
+            printPlat(food);
         }
         
     
